@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amera Exports Pvt. Ltd.</title>
+  <link rel="icon" href="img/onlylogo.png" type="image/png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #bdb8b8;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .sidebar img {
+      width: 80%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      padding: 15px;
+      text-decoration: none;
+      display: block;
+      font-size: 18px;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    .container {
+      margin-left: 250px;
+      padding: 20px;
+      width: calc(100% - 250px);
+      box-sizing: border-box;
+    }
+
+    .container h1 {
+      text-align: center;
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type=text],
+    input[type=date],
+    input[type=number],
+    select {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      width: 100%;
+    }
+
+    input[type=submit],
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      width: calc(50% - 10px);
+      margin-right: 10px;
+    }
+
+    input[type=submit]:hover,
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .none-checkbox {
+      margin-left: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .container {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <img src="img/onlylogo.png" alt="Company Logo">
+    <a href="#outwardForm">Dispatch Item Form</a>
+  </div>
+
+  <div class="container">
+    <h1>Dispatch Item Record</h1>
+    <form id="dispatchForm" action="https://script.google.com/macros/s/AKfycbwXQkTIzmSDrMW3dQWFbGYcBshJrttyaY_IdgB0FXf6nu9EIXL7Dx0B3aHAWrVx6u23yg/exec" method="post" onsubmit="return validateForm()">
+      <div class="form-group">
+        <label for="dispatchdate">Dispatch Date</label>
+        <input type="date" id="dispatchdate" name="dispatchdate" onchange="validateDispatchDate()" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dispatchchalanno">Dispatch Chalan Number</label>
+        <input type="text" id="dispatchchalanno" name="dispatchchalanno" required>
+      </div>
+
+      <div class="form-group">
+        <label for="materialname">Material Name</label>
+        <input type="text" id="materialname" name="materialname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="orderquantity">Order Quantity</label>
+        <input type="number" id="orderquantity" name="orderquantity" min="0" step="0.01" required>
+        <select class="unit-select" name="orderunit" id="orderunit" required>
+          <option value="kg">kg</option>
+          <option value="pcs">pcs</option>
+          <option value="liters">liters</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="dispatchquantity">Dispatch Quantity</label>
+        <input type="number" id="dispatchquantity" name="dispatchquantity" min="0" step="0.01" required>
+        <select class="unit-select" name="dispatchunit" id="dispatchunit" required>
+          <option value="kg">kg</option>
+          <option value="pcs">pcs</option>
+          <option value="liters">liters</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="numberofboxes">Number of Boxes</label>
+        <input type="number" id="numberofboxes" name="numberofboxes" min="0" required>
+      </div>
+
+      <div class="form-group">
+        <label for="totalweight">Total Weight</label>
+        <input type="number" id="totalweight" name="totalweight" min="0" step="0.01" required>
+        <select class="unit-select" name="weightunit" id="weightunit" required>
+          <option value="kg">kg</option>
+          <option value="g">g</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="factoryperson">Factory's Person Name(Released Good)</label>
+        <input type="text" id="factoryperson" name="factoryperson" required>
+      </div>
+
+      <div class="form-group">
+        <label for="invoicedate">Invoice Date</label>
+        <input type="date" id="invoicedate" name="invoicedate" required>
+        <input type="checkbox" id="noneInvoicedate" class="none-checkbox" onclick="toggleInput('invoicedate', 'noneInvoicedate')">
+      </div>
+
+      <div class="form-group">
+        <label for="invoiceno">Invoice Number</label>
+        <input type="text" id="invoiceno" name="invoiceno" required>
+        <input type="checkbox" id="noneInvoiceno" class="none-checkbox" onclick="toggleInput('invoiceno', 'noneInvoiceno')"> 
+      </div>
+
+
+      <div class="form-group">
+        <label for="clientname">Client Name</label>
+        <input type="text" id="clientname" name="clientname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="salespersonname">Sales Person Name</label>
+        <input type="text" id="salespersonname" name="salespersonname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="docketno">Docket Number</label>
+        <input type="text" id="docketno" name="docketno" required>
+      </div>
+
+      <div class="form-group">
+        <label for="courierday">Courier Day</label>
+        <input type="date" id="courierday" name="courierday" required>
+      </div>
+
+      <div class="form-group">
+        <label for="couriername">Courier Name</label>
+        <input type="text" id="couriername" name="couriername" required>
+      </div>
+
+      <div class="form-group">
+        <label for="remainingquantity">Remaining Quantity to Dispatch</label>
+        <input type="number" id="remainingquantity" name="remainingquantity" min="0" step="0.01" required>
+        <select class="unit-select" name="remainingunit" id="remainingunit" required>
+          <option value="kg">kg</option>
+          <option value="pcs">pcs</option>
+          <option value="liters">liters</option>
+        </select>
+      </div>
+
+      <div class="form-buttons">
+        <input type="submit" value="Submit">
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function validateDispatchDate() {
+      const dispatchDate = new Date(document.getElementById("dispatchdate").value);
+      const currentDate = new Date();
+
+      currentDate.setHours(0, 0, 0, 0);
+      dispatchDate.setHours(0, 0, 0, 0);
+
+      if (dispatchDate > currentDate) {
+        alert("Dispatch date cannot be in the future.");
+        document.getElementById("dispatchdate").value = "";
+      }
+    }
+
+    function validateForm() {
+      const formFields = document.querySelectorAll("input[type=text], input[type=date], input[type=number]");
+      let isValid = true;
+
+      formFields.forEach(field => {
+        if (!field.value.trim() && !field.disabled) {
+          alert(`Please fill out the ${field.name} field.`);
+          isValid = false;
+        }
+      });
+
+      return isValid;
+    }
+
+    function toggleInput(inputId, checkboxId) {
+      const inputField = document.getElementById(inputId);
+      const checkbox = document.getElementById(checkboxId);
+      
+      if (checkbox.checked) {
+        inputField.disabled = true;
+        inputField.value = "";
+      } else {
+        inputField.disabled = false;
+      }
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amera Exports Pvt. Ltd. - Dashboard</title>
+    <link rel="icon" href="img/onlylogo.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('img/Bg.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .dashboard-container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .dashboard-container img.logo {
+            width: 150px; /* Adjust the size as needed */
+            margin-bottom: 20px;
+        }
+
+        .dashboard-container h1 {
+            margin-bottom: 30px;
+            color: #f7f7f7;
+            font-size: 32px;
+        }
+
+        .dashboard-section {
+            margin-bottom: 20px;
+        }
+
+        .dashboard-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .dashboard-buttons button {
+            padding: 18px 30px;
+            font-size: 18px;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .dashboard-buttons button.fill {
+            background-color: #007bff;
+        }
+
+        .dashboard-buttons button.fill:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .dashboard-buttons button.preview {
+            background-color: #6c757d;
+        }
+
+        .dashboard-buttons button.preview:hover {
+            background-color: #5a6268;
+            transform: scale(1.05);
+        }
+
+        @media (min-width: 768px) {
+            .dashboard-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .dashboard-buttons {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .dashboard-buttons button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <img src="img/onlylogo.png" alt="Amera Exports Logo" class="logo">
+    <h1>Amera Exports Pvt. Ltd. - Stock Management System</h1>
+
+    <div class="dashboard-section">
+        <h2>Supplier Record</h2>
+        <div class="dashboard-buttons">
+            <button class="fill" onclick="navigateTo(supplierRecordUrl)">Fill</button>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Godown Material Inward Record</h2>
+        <div class="dashboard-buttons">
+            <button class="fill" onclick="navigateTo(godownInwardUrl)">Fill</button>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Sample Record</h2>
+        <div class="dashboard-buttons">
+            <button class="fill" onclick="navigateTo(sampleRecordUrl)">Fill</button>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Final Dispatch Record</h2>
+        <div class="dashboard-buttons">
+            <button class="fill" onclick="navigateTo(finalDispatchUrl)">Fill</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Define URLs for navigation
+    var supplierRecordUrl = 'Supplierdeatils.html';
+    var godownInwardUrl = 'Godowninward.html';
+    var sampleRecordUrl = 'sampleRecords.html';
+    var finalDispatchUrl = 'materialoutward.html';
+
+    // Function to handle button click and navigate to the URL
+    function navigateTo(url) {
+        window.location.href = url;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amera Exports Pvt. Ltd. - Inward Form</title>
+    <link rel="icon" href="img/onlylogo.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #bdb8b8;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding-top: 20px;
+        }
+
+        .sidebar img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            padding: 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .container {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type=text], input[type=date], input[type=number], select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type=submit], input[type=reset], button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type=submit]:hover, input[type=reset]:hover, button:hover {
+            background-color: #0056b3;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .unit-select {
+            width: auto;
+            margin-left: 10px;
+            padding: 8px;
+        }
+
+        input[disabled] {
+            background-color: #f0f0f0;
+        }
+
+        button {
+            background-color: #28a745;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .preview-section {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .container {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <img src="img/onlylogo.png" alt="Company Logo">
+    <a href="#inwardForm">Supplier Record</a>
+    <a href="#previewSection">Preview</a>
+</div>
+
+<div class="container">
+    <div id="inwardForm">
+        <h1>Supplier's Record - Amera Exports Pvt. Ltd.</h1>
+        <form id="inwardFormElement" action="https://script.google.com/macros/s/AKfycbyqxhQ8xvQvqgmq3p3UMA8-EtZVfuG4hrrR1js5_1d8YzPPMNeLQP04t3PqOH7lPxU/exec" method="post" onsubmit="return showPreview();">
+            
+            <!-- Received Date -->
+            <div>
+                <label for="receivedate">Receive Date</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="receivedateNotKnown" onchange="toggleInput('receivedate', 'receivedateNotKnown')">
+                    <label for="receivedateNotKnown">None</label>
+                </div>
+                <input type="date" id="receivedate" name="receivedate" max="" required onchange="validateDate(); generateReceivedCode();">
+            </div>
+
+            <!-- Supplier Name -->
+            <div>
+                <label for="suppliername">Supplier Name</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="suppliernameNotKnown" onchange="toggleInput('suppliername', 'suppliernameNotKnown')">
+                    <label for="suppliernameNotKnown">None</label>
+                </div>
+                <input type="text" id="suppliername" name="suppliername" placeholder="Supplier Name.." pattern="[A-Za-z\s]+" title="Please enter alphabets only." required>
+            </div>
+
+            <!-- Supplier Code -->
+            <div>
+                <label for="suppliercode">Supplier Code</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="suppliercodeNotKnown" onchange="toggleInput('suppliercode', 'suppliercodeNotKnown')">
+                    <label for="suppliercodeNotKnown">None</label>
+                </div>
+                <input type="text" id="suppliercode" name="suppliercode" placeholder="Supplier Code.." required oninput="generateReceivedCode()">
+            </div>
+
+            <!-- Item Name -->
+            <div>
+                <label for="itemname">Item Name</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="itemnameNotKnown" onchange="toggleInput('itemname', 'itemnameNotKnown')">
+                    <label for="itemnameNotKnown">None</label>
+                </div>
+                <input type="text" id="itemname" name="itemname" placeholder="Item Name.." required>
+            </div>
+
+            <!-- Item Code -->
+            <div>
+                <label for="itemcode">Item Code</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="itemcodeNotKnown" onchange="toggleInput('itemcode', 'itemcodeNotKnown')">
+                    <label for="itemcodeNotKnown">None</label>
+                </div>
+                <input type="text" id="itemcode" name="itemcode" placeholder="Item Code.." required oninput="generateReceivedCode()">
+            </div>
+
+            <!-- Supplier Quantity -->
+            <div>
+                <label for="supplierquantity">Supplier Quantity/Received Quantity</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="supplierquantityNotKnown" onchange="toggleInput('supplierquantity', 'supplierquantityNotKnown')">
+                    <label for="supplierquantityNotKnown">None</label>
+                </div>
+                <input type="number" id="supplierquantity" name="supplierquantity" placeholder="Supplier Quantity.." required>
+                <select id="supplierquantityUnit" name="supplierquantityUnit" class="unit-select" required>
+                    <option value="">Select Unit</option>
+                    <option value="kg">kg</option>
+                    <option value="pcs">pcs</option>
+                    <option value="liters">liters</option>
+                </select>
+            </div>
+
+            <!-- Autogenerated Received Code -->
+            <div>
+                <label for="receivedcode">Received Code</label>
+                <input type="text" id="receivedcode" name="receivedcode" placeholder="Generated Received Code" readonly>
+            </div>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+
+    <!-- Preview Section -->
+    <div id="previewSection" class="preview-section">
+        <h2>Preview of Submitted Data</h2>
+        <div id="previewData"></div>
+    </div>
+
+    <script>
+        // Function to toggle the input field based on checkbox status
+        function toggleInput(inputId, checkboxId) {
+            const inputElement = document.getElementById(inputId);
+            const checkboxElement = document.getElementById(checkboxId);
+            inputElement.disabled = checkboxElement.checked;
+
+            if (checkboxElement.checked) {
+                inputElement.value = ''; // Clear input if 'None' is checked
+            }
+        }
+
+        // Function to validate that the receive date is not in the future
+        function validateDate() {
+            const receivedDateInput = document.getElementById('receivedate');
+            const receivedDateValue = new Date(receivedDateInput.value);
+            const today = new Date();
+
+            if (receivedDateValue > today) {
+                alert('Receive Date cannot be in the future.');
+                receivedDateInput.value = ''; // Clear invalid date
+            }
+        }
+
+        // Function to generate Received Code
+        function generateReceivedCode() {
+            const supplierCode = document.getElementById('suppliercode').value;
+            const itemCode = document.getElementById('itemcode').value;
+            const receiveDate = document.getElementById('receivedate').value;
+
+            if (supplierCode && itemCode && receiveDate) {
+                const receiveDateFormatted = receiveDate.split('-').join('');
+                const receivedCode = `${supplierCode}-${itemCode}-${receiveDateFormatted}`;
+                document.getElementById('receivedcode').value = receivedCode;
+            } else {
+                document.getElementById('receivedcode').value = '';
+            }
+        }
+
+        // Set the max value of receive date to today
+        document.getElementById('receivedate').max = new Date().toISOString().split("T")[0];
+
+        // Function to show preview data before submission
+        function showPreview() {
+            const formData = new FormData(document.getElementById('inwardFormElement'));
+            const previewSection = document.getElementById('previewSection');
+            const previewData = document.getElementById('previewData');
+
+            previewData.innerHTML = '';
+            formData.forEach((value, key) => {
+                previewData.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+            });
+
+            previewSection.style.display = 'block';
+            return true; // Allow form submission
+        }
+    </script>
+</div>
+
+</body>
+</html>

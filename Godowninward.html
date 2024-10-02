@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amera Exports Pvt. Ltd. - Godown Inward Item Record</title>
+    <link rel="icon" href="img/onlylogo.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #bdb8b8;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding-top: 20px;
+        }
+
+        .sidebar img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            padding: 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .container {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type=text],
+        input[type=date],
+        input[type=number],
+        select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type=submit],
+        input[type=reset],
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type=submit]:hover,
+        input[type=reset]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .unit-select {
+            width: auto;
+            margin-left: 10px;
+            padding: 8px;
+        }
+
+        input[disabled] {
+            background-color: #f0f0f0;
+        }
+
+        button {
+            background-color: #28a745;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .preview-section {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .container {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <img src="img/onlylogo.png" alt="Company Logo">
+        <a href="#inwardForm">Godown Inward Item Record</a>
+        <a href="#previewSection">Preview</a>
+    </div>
+
+    <div class="container">
+        <div id="inwardForm">
+            <h1>Godown Inward Item Record - Amera Exports Pvt. Ltd.</h1>
+            <form id="inwardFormElement"
+                action="https://script.google.com/macros/s/AKfycbyEY_ytuEcxT5_05OnTQuyPVHOpigxEsWecnWBWPbdZeK7FTZNkwT9jCVujzjkP_rFu7w/exec"
+                method="post" onsubmit="showPreview(); return true;">
+
+                <!-- Final Check Date -->
+                <div>
+                    <label for="finalcheckdate">Final Check Date</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="finalcheckdateNotKnown"
+                            onchange="toggleInput('finalcheckdate', 'finalcheckdateNotKnown')">
+                        <label for="finalcheckdateNotKnown">None</label>
+                    </div>
+                    <input type="date" id="finalcheckdate" name="finalcheckdate" required onchange="validateDate()">
+                </div>
+
+                <!-- Receiving Code -->
+                <div>
+                    <label for="receivingcode">Receiving Code</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="receivingcodeNotKnown"
+                            onchange="toggleInput('receivingcode', 'receivingcodeNotKnown')">
+                        <label for="receivingcodeNotKnown">None</label>
+                    </div>
+                    <input type="text" id="receivingcode" name="receivingcode" placeholder="Receiving Code.." required>
+                </div>
+
+                <!-- Item Code -->
+                <div>
+                    <label for="itemcode">Item Code</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="itemcodeNotKnown"
+                            onchange="toggleInput('itemcode', 'itemcodeNotKnown')">
+                        <label for="itemcodeNotKnown">None</label>
+                    </div>
+                    <input type="text" id="itemcode" name="itemcode" placeholder="Item Code.." required>
+                </div>
+
+                <!-- Item Name -->
+                <div>
+                    <label for="itemname">Item Name</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="itemnameNotKnown"
+                            onchange="toggleInput('itemname', 'itemnameNotKnown')">
+                        <label for="itemnameNotKnown">None</label>
+                    </div>
+                    <input type="text" id="itemname" name="itemname" placeholder="Item Name.." required>
+                </div>
+
+                <!-- Received Quantity -->
+                <div>
+                    <label for="receivedquantity">Received Quantity</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="receivedquantityNotKnown"
+                            onchange="toggleInput('receivedquantity', 'receivedquantityNotKnown')">
+                        <label for="receivedquantityNotKnown">None</label>
+                    </div>
+                    <input type="number" id="receivedquantity" name="receivedquantity" placeholder="Received Quantity.."
+                        required>
+                    <select id="receivedquantityUnit" name="receivedquantityUnit" class="unit-select" required>
+                        <option value="">Select Unit</option>
+                        <option value="kg">kg</option>
+                        <option value="pcs">pcs</option>
+                        <option value="liters">liters</option>
+                    </select>
+                </div>
+
+                <!-- Lab Out Date -->
+                <div>
+                    <label for="laboutdate">Lab Out Date</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="laboutdateNotKnown"
+                            onchange="toggleInput('laboutdate', 'laboutdateNotKnown')">
+                        <label for="laboutdateNotKnown">None</label>
+                    </div>
+                    <input type="date" id="laboutdate" name="laboutdate">
+                </div>
+
+                <!-- Lab Out Quantity -->
+                <div>
+                    <label for="laboutquantity">Lab Out Quantity</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="laboutquantityNotKnown"
+                            onchange="toggleInput('laboutquantity', 'laboutquantityNotKnown', 'laboutquantityUnit')">
+                        <label for="laboutquantityNotKnown">None</label>
+                    </div>
+                    <input type="number" id="laboutquantity" name="laboutquantity" placeholder="Lab Out Quantity..">
+                    <select id="laboutquantityUnit" name="laboutquantityUnit" class="unit-select">
+                        <option value="">Select Unit</option>
+                        <option value="kg">kg</option>
+                        <option value="pcs">pcs</option>
+                        <option value="liters">liters</option>
+                    </select>
+                </div>
+
+
+                <!-- Lab Return Date -->
+                <div>
+                    <label for="labreturndate">Lab Return Date</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="labreturndateNotKnown"
+                            onchange="toggleInput('labreturndate', 'labreturndateNotKnown')">
+                        <label for="labreturndateNotKnown">None</label>
+                    </div>
+                    <input type="date" id="labreturndate" name="labreturndate">
+                </div>
+
+
+
+                <!-- Lab Return Quantity -->
+                <div>
+                    <label for="labreturnquantity">Lab Return Quantity</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="labreturnquantityNotKnown"
+                            onchange="toggleInput('labreturnquantity', 'labreturnquantityNotKnown', 'labreturnquantityUnit')">
+                        <label for="labreturnquantityNotKnown">None</label>
+                    </div>
+                    <input type="number" id="labreturnquantity" name="labreturnquantity"
+                        placeholder="Lab Return Quantity..">
+                    <select id="labreturnquantityUnit" name="labreturnquantityUnit" class="unit-select">
+                        <option value="">Select Unit</option>
+                        <option value="kg">kg</option>
+                        <option value="pcs">pcs</option>
+                        <option value="liters">liters</option>
+                    </select>
+                </div>
+
+
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+                <button type="button" onclick="showPreview()">Preview</button>
+            </form>
+        </div>
+
+        <div id="previewSection" class="preview-section">
+            <h2>Form Data Preview</h2>
+            <div id="previewContent"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleInput(inputId, checkboxId, unitId = null) {
+            const inputField = document.getElementById(inputId);
+            const checkbox = document.getElementById(checkboxId);
+            if (checkbox.checked) {
+                inputField.disabled = true;
+                inputField.value = ''; // Clear value when disabled
+                if (unitId) {
+                    const unitSelect = document.getElementById(unitId);
+                    unitSelect.disabled = true;
+                    unitSelect.value = ''; // Clear unit when disabled
+                }
+            } else {
+                inputField.disabled = false;
+                if (unitId) {
+                    document.getElementById(unitId).disabled = false;
+                }
+            }
+        }
+
+        function showPreview() {
+            const previewSection = document.getElementById("previewSection");
+            const previewContent = document.getElementById("previewContent");
+            previewContent.innerHTML = '';
+
+            const formElements = document.forms['inwardFormElement'].elements;
+            for (let i = 0; i < formElements.length; i++) {
+                const element = formElements[i];
+                if (element.name && element.value) {
+                    previewContent.innerHTML += `<p><strong>${element.name}:</strong> ${element.value}</p>`;
+                }
+            }
+
+            previewSection.style.display = 'block';
+
+            // Allow the form to be submitted
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>

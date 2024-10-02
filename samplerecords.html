@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amera Exports Pvt. Ltd. - Sample Record</title>
+<link rel="icon" href="img/onlylogo.png" type="image/png">
+<style>
+  /* Same styles as before */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #bdb8b8;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .sidebar img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar a {
+    color: #fff;
+    padding: 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+  }
+  
+  .sidebar a:hover {
+    background-color: #575757;
+  }
+  
+  .container {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    box-sizing: border-box;
+  }
+  
+  .container h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  input[type=text], input[type=date], input[type=number], select, textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  input[type=submit], button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type=submit]:hover, button:hover {
+    background-color: #0056b3;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .unit-select {
+    width: auto;
+    margin-left: 10px;
+    padding: 8px;
+  }
+  
+  input[disabled] {
+    background-color: #f0f0f0;
+  }
+  
+  input:disabled, select:disabled {
+    cursor: not-allowed;
+  }
+  
+  button {
+    background-color: #28a745;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+  
+    .container {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Restrict date to not be in the future
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById("date").setAttribute("max", today);
+
+    // Add form submission event listener
+    document.getElementById("sampleForm").addEventListener("submit", function(event) {
+      var nameFields = ["itemname", "salespersonname", "factorypersonname", "clientname"];
+      for (var i = 0; i < nameFields.length; i++) {
+        var nameField = document.getElementById(nameFields[i]);
+        if (!/^[A-Za-z\s]+$/.test(nameField.value)) {
+          alert("Please enter valid alphabetic characters for " + nameField.previousElementSibling.innerText + ".");
+          nameField.focus();
+          event.preventDefault();
+          return false;
+        }
+      }
+    });
+  });
+</script>
+</head>
+<body>
+
+<div class="sidebar">
+  <img src="img/onlylogo.png" alt="Company Logo">
+  <a href="#sampleForm">Sample Record Form</a>
+</div>
+
+<div class="container">
+  <div id="sampleForm">
+    <h1>Sample Record - Amera Exports Pvt. Ltd.</h1>
+    <form id="sampleForm" action="https://script.google.com/macros/s/AKfycbzuMK1oxqiT_tNZD2zGmnZ1y7_6Lc5a8UCX3CG-5VUcfXw6ExDuQQkCjwZzzA5CLBD8/exec" method="post">
+      <div class="row">
+        <div class="col-25">
+          <label for="date">Date</label>
+        </div>
+        <div class="col-75">
+          <input type="date" id="date" name="date" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="itemname">Item Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="itemname" name="itemname" placeholder="Item Name.." pattern="[A-Za-z0-9\s]+" title="Please enter alphanumeric characters only." required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="salespersonname">Concern Sales Person Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="salespersonname" name="salespersonname" placeholder="Sales Person Name.." pattern="[A-Za-z\s]+" title="Please enter alphabets only." required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="factorypersonname">Factory's Sending Person Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="factorypersonname" name="factorypersonname" placeholder="Factory's Sending Person Name.." pattern="[A-Za-z\s]+" title="Please enter alphabets only." required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="quantitysent">Quantity Sent</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="quantitysent" name="quantitysent" placeholder="Quantity Sent.." min="0" step="0.01" required>
+          <select id="quantityUnit" name="quantityUnit" class="unit-select" required>
+            <option value="">Select Unit</option>
+            <option value="kg">kg</option>
+            <option value="pcs">pcs</option>
+            <option value="liters">liters</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="clientname">Client Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="clientname" name="clientname" placeholder="Client Name.." pattern="[A-Za-z\s]+" title="Please enter alphabets only." required>
+        </div>
+      </div>
+      <div class="row">
+        <input type="submit" value="Submit">
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
