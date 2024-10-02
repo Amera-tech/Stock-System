@@ -16,7 +16,6 @@ bash
 Copy code
 .
 ├── index.html           # The main HTML file containing the form and preview tabs
-├── img/
 │   ├── onlylogo.png     # Company logo used in the sidebar
 ├── README.md            # Documentation of the project
 HTML File Breakdown
